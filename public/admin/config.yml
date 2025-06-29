@@ -2,23 +2,132 @@ backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
 
-# This line should be changed to the correct repo in your GitHub account
-repo: "FreeMusketeer/ari-dictionary"
+# Update this to your repository
+repo: "benoitbarbier/DarijaDictionary" # e.g., "user/repo"
 
 media_folder: "public/uploads" # Media files will be stored in the repo under public/uploads
 public_folder: "/uploads" # The src attribute for uploaded media will begin with /uploads
 
 collections:
-  - name: "noun" # Used in routes, e.g., /admin/collections/noun
-    label: "Noun" # Used in the UI
-    folder: "content/nouns" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template, e.g., title.md
-    fields: # The fields for each document, usually in front matter
+  - name: "nouns"
+    label: "Nouns"
+    folder: "_data/nouns"
+    create: true
+    slug: "{{uuid}}"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden", default: "{{uuid}}" }
       - { label: "Term", name: "term", widget: "string" }
       - { label: "Language", name: "language", widget: "select", options: ["DARIJA", "ENGLISH", "FRENCH"] }
       - { label: "Gender", name: "gender", widget: "select", options: ["MASCULINE", "FEMININE", "NEUTER"] }
-      - { label: "Number", name: "number", widget: "select", options: ["SINGULAR", "PLURAL"] } 
+      - { label: "Number", name: "number", widget: "select", options: ["SINGULAR", "PLURAL"] }
+      - { label: "Notes", name: "notes", widget: "text", required: false }
+      - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
+          { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "PLURAL_OF", "SYNONYM_OF", "ANTONYM_OF", "SEE_ALSO"] },
+          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+        ]}
 
+  - name: "adjectives"
+    label: "Adjectives"
+    folder: "_data/adjectives"
+    create: true
+    slug: "{{uuid}}"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden", default: "{{uuid}}" }
+      - { label: "Term", name: "term", widget: "string" }
+      - { label: "Language", name: "language", widget: "select", options: ["DARIJA", "ENGLISH", "FRENCH"] }
+      - { label: "Adjective Type", name: "adjective_type", widget: "select", options: ["DESCRIPTIVE", "DEMONSTRATIVE", "POSSESSIVE", "INTERROGATIVE", "INDEFINITE", "PROPER", "QUANTITATIVE", "DISTRIBUTIVE", "COMPARATIVE", "SUPERLATIVE"] }
+      - { label: "Gender", name: "gender", widget: "select", options: ["MASCULINE", "FEMININE", "NEUTER"], required: false }
+      - { label: "Number", name: "number", widget: "select", options: ["SINGULAR", "PLURAL"], required: false }
+      - { label: "Notes", name: "notes", widget: "text", required: false }
+      - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
+          { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "COMPARATIVE_OF", "SUPERLATIVE_OF", "SYNONYM_OF", "ANTONYM_OF", "SEE_ALSO"] },
+          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+        ]}
+
+  - name: "verbs"
+    label: "Verbs"
+    folder: "_data/verbs"
+    create: true
+    slug: "{{uuid}}"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden", default: "{{uuid}}" }
+      - { label: "Term", name: "term", widget: "string" }
+      - { label: "Language", name: "language", widget: "select", options: ["DARIJA", "ENGLISH", "FRENCH"] }
+      - { label: "Verb Type", name: "verb_type", widget: "select", options: ["STATIVE", "ACTION", "MODAL", "AUXILIARY"], required: false } # For non-Darija verbs
+      - { label: "Regularity", name: "regularity", widget: "select", options: ["REGULAR", "IRREGULAR"] }
+      - { label: "Transitivity", name: "transitivity", widget: "select", options: ["TRANSITIVE", "INTRANSITIVE", "DITRANSITIVE"], required: false }
+      - { label: "Conjugation Rule", name: "conjugation_rule", widget: "select", options: ["BASE", "CCV_REPLACE", "CVC_REPLACE", "KLAA", "KHDAA"], required: false, hint: "For Darija verbs only. Select a rule if the verb is irregular." }
+      - { label: "Notes", name: "notes", widget: "text", required: false }
+      - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
+          { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SYNONYM_OF", "ANTONYM_OF", "SEE_ALSO"] },
+          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+        ]}
+
+  - name: "pronouns"
+    label: "Pronouns"
+    folder: "_data/pronouns"
+    create: true
+    slug: "{{uuid}}"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden", default: "{{uuid}}" }
+      - { label: "Term", name: "term", widget: "string" }
+      - { label: "Language", name: "language", widget: "select", options: ["DARIJA", "ENGLISH", "FRENCH"] }
+      - { label: "Pronoun Type", name: "pronoun_type", widget: "select", options: ["PERSONAL", "POSSESSIVE", "DEMONSTRATIVE", "INTERROGATIVE", "RELATIVE", "INDEFINITE"] }
+      - { label: "Person", name: "person", widget: "select", options: ["FIRST", "SECOND", "THIRD"] }
+      - { label: "Gender", name: "gender", widget: "select", options: ["MASCULINE", "FEMININE", "NEUTER"] }
+      - { label: "Number", name: "number", widget: "select", options: ["SINGULAR", "PLURAL"] }
+      - { label: "Notes", name: "notes", widget: "text", required: false }
+      - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
+          { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SEE_ALSO"] },
+          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+        ]}
+
+  - name: "adverbs"
+    label: "Adverbs"
+    folder: "_data/adverbs"
+    create: true
+    slug: "{{uuid}}"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden", default: "{{uuid}}" }
+      - { label: "Term", name: "term", widget: "string" }
+      - { label: "Language", name: "language", widget: "select", options: ["DARIJA", "ENGLISH", "FRENCH"] }
+      - { label: "Adverb Type", name: "adverb_type", widget: "select", options: ["MANNER", "PLACE", "TIME", "FREQUENCY", "DEGREE", "CAUSE"] }
+      - { label: "Notes", name: "notes", widget: "text", required: false }
+      - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
+          { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SYNONYM_OF", "ANTONYM_OF", "SEE_ALSO"] },
+          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+        ]}
+
+  - name: "prepositions"
+    label: "Prepositions"
+    folder: "_data/prepositions"
+    create: true
+    slug: "{{uuid}}"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden", default: "{{uuid}}" }
+      - { label: "Term", name: "term", widget: "string" }
+      - { label: "Language", name: "language", widget: "select", options: ["DARIJA", "ENGLISH", "FRENCH"] }
+      - { label: "Preposition Type", name: "preposition_type", widget: "select", options: ["TEMPORAL", "LOCATIVE", "MANNER_INSTRUMENT", "CAUSE_PURPOSE"] }
+      - { label: "Notes", name: "notes", widget: "text", required: false }
+      - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
+          { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SEE_ALSO"] },
+          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+        ]}
+
+  - name: "conjunctions"
+    label: "Conjunctions"
+    folder: "_data/conjunctions"
+    create: true
+    slug: "{{uuid}}"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden", default: "{{uuid}}" }
+      - { label: "Term", name: "term", widget: "string" }
+      - { label: "Language", name: "language", widget: "select", options: ["DARIJA", "ENGLISH", "FRENCH"] }
+      - { label: "Conjunction Type", name: "conjunction_type", widget: "select", options: ["COORDINATING", "SUBORDINATING", "CORRELATIVE_PAIR_OF"] }
+      - { label: "Notes", name: "notes", widget: "text", required: false }
+      - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
+          { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SEE_ALSO"] },
+          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+        ]}
 
       
