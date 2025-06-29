@@ -16,7 +16,7 @@ collections:
     slug: "{{slug}}"
     fields:
       # Core Fields (always visible)
-      - { label: "ID", name: "id", widget: "ncw-id", prefix: "entry" }
+      - { label: "ID", name: "id", widget: "ncw-id", prefix: "entry", hidden: true }
       - { label: "Term", name: "term", widget: "string" }
       - { label: "Language", name: "language", widget: "select", options: ["DARIJA", "ENGLISH", "FRENCH"] }
       - { label: "Part of Speech", name: "part_of_speech", widget: "select", options: ["NOUN", "ADJECTIVE", "VERB", "PRONOUN", "ADVERB", "PREPOSITION", "CONJUNCTION"] }
