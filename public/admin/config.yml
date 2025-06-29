@@ -23,7 +23,7 @@ collections:
       - { label: "Notes", name: "notes", widget: "text", required: false }
       - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
           { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "PLURAL_OF", "SYNONYM_OF", "ANTONYM_OF", "SEE_ALSO"] },
-          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+          { label: "Target ID", name: "target", widget: "string", hint: "Find the target entry, copy its UUID, and paste it here." }
         ]}
 
   - name: "adjectives"
@@ -41,7 +41,7 @@ collections:
       - { label: "Notes", name: "notes", widget: "text", required: false }
       - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
           { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "COMPARATIVE_OF", "SUPERLATIVE_OF", "SYNONYM_OF", "ANTONYM_OF", "SEE_ALSO"] },
-          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+          { label: "Target ID", name: "target", widget: "string", hint: "Find the target entry, copy its UUID, and paste it here." }
         ]}
 
   - name: "verbs"
@@ -60,7 +60,7 @@ collections:
       - { label: "Notes", name: "notes", widget: "text", required: false }
       - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
           { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SYNONYM_OF", "ANTONYM_OF", "SEE_ALSO"] },
-          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+          { label: "Target ID", name: "target", widget: "string", hint: "Find the target entry, copy its UUID, and paste it here." }
         ]}
 
   - name: "pronouns"
@@ -79,7 +79,7 @@ collections:
       - { label: "Notes", name: "notes", widget: "text", required: false }
       - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
           { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SEE_ALSO"] },
-          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+          { label: "Target ID", name: "target", widget: "string", hint: "Find the target entry, copy its UUID, and paste it here." }
         ]}
 
   - name: "adverbs"
@@ -95,7 +95,7 @@ collections:
       - { label: "Notes", name: "notes", widget: "text", required: false }
       - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
           { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SYNONYM_OF", "ANTONYM_OF", "SEE_ALSO"] },
-          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+          { label: "Target ID", name: "target", widget: "string", hint: "Find the target entry, copy its UUID, and paste it here." }
         ]}
 
   - name: "prepositions"
@@ -111,7 +111,7 @@ collections:
       - { label: "Notes", name: "notes", widget: "text", required: false }
       - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
           { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SEE_ALSO"] },
-          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+          { label: "Target ID", name: "target", widget: "string", hint: "Find the target entry, copy its UUID, and paste it here." }
         ]}
 
   - name: "conjunctions"
@@ -127,7 +127,7 @@ collections:
       - { label: "Notes", name: "notes", widget: "text", required: false }
       - { label: "Relationships", name: "relationships", widget: "list", required: false, fields: [
           { label: "Type", name: "type", widget: "select", options: ["TRANSLATION_OF", "SEE_ALSO"] },
-          { label: "Target", name: "target", widget: "relation", collection: ["nouns", "adjectives", "verbs", "pronouns", "adverbs", "prepositions", "conjunctions"], search_fields: ["term"], value_field: "id", display_fields: ["term", "language"] }
+          { label: "Target ID", name: "target", widget: "string", hint: "Find the target entry, copy its UUID, and paste it here." }
         ]}
 
       
