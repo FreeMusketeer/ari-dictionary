@@ -28,6 +28,7 @@ collections:
       - label: "Noun Details"
         name: "noun_details"
         widget: "object"
+        required: false
         condition: { field: "part_of_speech", value: "NOUN" }
         fields:
           - { label: "Gender", name: "gender", widget: "select", options: ["MASCULINE", "FEMININE", "NEUTER"] }
@@ -37,6 +38,7 @@ collections:
       - label: "Adjective Details"
         name: "adjective_details"
         widget: "object"
+        required: false
         condition: { field: "part_of_speech", value: "ADJECTIVE" }
         fields:
           - { label: "Adjective Type", name: "adjective_type", widget: "select", options: ["DESCRIPTIVE", "DEMONSTRATIVE", "POSSESSIVE", "INTERROGATIVE", "INDEFINITE", "PROPER", "QUANTITATIVE", "DISTRIBUTIVE", "COMPARATIVE", "SUPERLATIVE"] }
@@ -47,6 +49,7 @@ collections:
       - label: "Verb Details"
         name: "verb_details"
         widget: "object"
+        required: false
         condition: { field: "part_of_speech", value: "VERB" }
         fields:
           - { label: "Verb Type", name: "verb_type", widget: "select", options: ["STATIVE", "ACTION", "MODAL", "AUXILIARY"], required: false }
@@ -58,6 +61,7 @@ collections:
       - label: "Pronoun Details"
         name: "pronoun_details"
         widget: "object"
+        required: false
         condition: { field: "part_of_speech", value: "PRONOUN" }
         fields:
           - { label: "Pronoun Type", name: "pronoun_type", widget: "select", options: ["PERSONAL", "POSSESSIVE", "DEMONSTRATIVE", "INTERROGATIVE", "RELATIVE", "INDEFINITE"] }
@@ -69,6 +73,7 @@ collections:
       - label: "Adverb Details"
         name: "adverb_details"
         widget: "object"
+        required: false
         condition: { field: "part_of_speech", value: "ADVERB" }
         fields:
           - { label: "Adverb Type", name: "adverb_type", widget: "select", options: ["MANNER", "PLACE", "TIME", "FREQUENCY", "DEGREE", "CAUSE"] }
@@ -77,6 +82,7 @@ collections:
       - label: "Preposition Details"
         name: "preposition_details"
         widget: "object"
+        required: false
         condition: { field: "part_of_speech", value: "PREPOSITION" }
         fields:
           - { label: "Preposition Type", name: "preposition_type", widget: "select", options: ["TEMPORAL", "LOCATIVE", "MANNER_INSTRUMENT", "CAUSE_PURPOSE"] }
@@ -85,6 +91,7 @@ collections:
       - label: "Conjunction Details"
         name: "conjunction_details"
         widget: "object"
+        required: false
         condition: { field: "part_of_speech", value: "CONJUNCTION" }
         fields:
           - { label: "Conjunction Type", name: "conjunction_type", widget: "select", options: ["COORDINATING", "SUBORDINATING", "CORRELATIVE_PAIR_OF"] }
