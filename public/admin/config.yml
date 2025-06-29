@@ -3,7 +3,7 @@ backend:
   branch: main # Branch to update (optional; defaults to master)
 
 # This line should be changed to the correct repo in your GitHub account
-repo: "exgael/ari-dictionary"
+repo: "FreeMusketeer/ari-dictionary"
 
 media_folder: "public/uploads" # Media files will be stored in the repo under public/uploads
 public_folder: "/uploads" # The src attribute for uploaded media will begin with /uploads
